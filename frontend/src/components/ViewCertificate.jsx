@@ -5,14 +5,18 @@ import "./ViewCertificate.css";
 
 const ViewCertificate = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
     const fetchCertificatesData = async () => {
+      setLoading(true); // Set loading to true when fetching starts
       try {
         const response = await axios.get("https://certificate-generation-system-backend.onrender.com/viewcertificate");
         setData(response.data);
       } catch (error) {
         toast.error("Failed to fetch certificates.");
+      } finally {
+        setLoading(false); // Set loading to false when fetching is complete
       }
     };
     fetchCertificatesData();
@@ -20,7 +24,7 @@ const ViewCertificate = () => {
 
   const deleteCertificate = async (id) => {
     try {
-      await axios.delete(`https://certificate-generation-system-backend.onrender.com/${id}`);
+      await axios.delete(`https://certificate-generation-system-backend.onrender.com/delete/viewcertificate/${id}`);
       toast.success("Certificate deleted successfully.");
       setData((prev) => prev.filter((cert) => cert._id !== id));
     } catch {
@@ -30,7 +34,11 @@ const ViewCertificate = () => {
 
   return (
     <div className="table-container">
-      {data.length === 0 ? (
+      {loading ? ( // Show spinner while loading
+        <div className="loading-spinner">
+
+        </div>
+      ) : data.length === 0 ? (
         <p className="no-data-message">No certificates found.</p> // Show this message if data is empty
       ) : (
         <div className="responsive-table-wrapper">
