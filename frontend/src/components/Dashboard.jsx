@@ -26,7 +26,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     setLoading(true); // Start loading for delete
     try {
-      await axios.delete(`https://certificate-generation-system-backend.onrender.com/${id}`);
+      await axios.delete(`https://certificate-generation-system-backend.onrender.com/api/certificates/${id}`);
       toast.success("Certificate deleted successfully.");
       setCertificates((prev) => prev.filter((cert) => cert._id !== id));
     } catch (error) {
