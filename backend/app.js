@@ -91,101 +91,34 @@ if (!fs.existsSync(dir)) {
 app.post("/api/certificates/generate/:id", async (req, res) => {
 
   const { _id, name, course, createdAt, issueDate } = req.body;
-  // console.log(req.body);
+
 
   if (!name || !course || !createdAt || !issueDate) {
     return res.status(400).send({ error: "All fields (name, course, createdAt, issueDate) are required." });
   }
 
   try {
-    // Create a new PDF document
-    const pdfDoc = await PDFDocument.create();
+    // Load the existing PDF file
+    const existingPdfBytes = fs.readFileSync(path.join(__dirname, "public", "image", "Democertificate.pdf"));
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
-    // Add a page to the document
-    const page = pdfDoc.addPage([842, 595]);
+    // Get the first page of the PDF
+    const page = pdfDoc.getPage(0);
 
-    // Embed fonts
-    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-    const timesRomanBold = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
+    // Embed a font
+    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
 
-    // Background Color
-    page.drawRectangle({
-      x: 0,
-      y: 0,
-      width: page.getWidth(),
-      height: page.getHeight(),
-      color: rgb(0.9, 0.95, 1),
-    });
 
-    // Header Section
-    page.drawText("Certificate of Achievement", {
-      x: 50,
-      y: page.getHeight() - 70,
-      size: 32,
-      font: timesRomanBold,
-      color: rgb(0.1, 0.2, 0.6),
-    });
 
-    page.drawText("ASR Tech Solutions", {
-      x: page.getWidth() - 240,
-      y: page.getHeight() - 70,
-      size: 18,
-      font: timesRomanBold,
-      color: rgb(0.1, 0.2, 0.6),
-    });
-
-    // Certificate Text
-    page.drawText(`This is to certify that`, {
-      x: 50,
-      y: page.getHeight() - 150,
-      size: 18,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0),
-    });
-
-    // Recipient Name
+    // Draw the new name on the PDF
     page.drawText(name, {
-      x: 50,
-      y: page.getHeight() - 190,
-      size: 28,
-      font: timesRomanBold,
-      color: rgb(0.1, 0.4, 0.8),
+      x: 450,
+      y: 290,
+      size: 40,
+      color: rgb(0.3, 0.5, 0.75),
     });
 
-    // Course Details
-    page.drawText(`has successfully completed the course`, {
-      x: 50,
-      y: page.getHeight() - 230,
-      size: 18,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0),
-    });
 
-    page.drawText(course, {
-      x: 50,
-      y: page.getHeight() - 260,
-      size: 24,
-      font: timesRomanBold,
-      color: rgb(0.1, 0.4, 0.8),
-    });
-
-    // Date of Issue
-    page.drawText(`Date: ${issueDate}`, {
-      x: 50,
-      y: page.getHeight() - 340,
-      size: 16,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0),
-    });
-
-    // Signature Placeholder
-    page.drawText("Authorized Signature", {
-      x: page.getWidth() - 200,
-      y: page.getHeight() - 340,
-      size: 16,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0),
-    });
 
     // Save the PDF to a file
     const pdfBytes = await pdfDoc.save();
@@ -271,7 +204,7 @@ app.delete("/delete/viewcertificate/:id", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 3000;
 
 
 

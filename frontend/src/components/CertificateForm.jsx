@@ -7,8 +7,8 @@ const CertificateForm = () => {
   const [name, setName] = useState("");
   const [course, setCourse] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false); // State to track loading
-
+  const [loading, setLoading] = useState(false); 
+  const URL = `https://certificate-generation-system-backend.onrender.com`;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -20,7 +20,7 @@ const CertificateForm = () => {
 
     try {
       setLoading(true); // Start spinner
-      await axios.post("https://certificate-generation-system-backend.onrender.com/", formData);
+      await axios.post(`${URL}/`, formData);
       toast.success("Request submitted successfully!");
       setName("");
       setCourse("");

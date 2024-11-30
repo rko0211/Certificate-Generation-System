@@ -7,12 +7,13 @@ import "./Dashboard.css"; // Link to the CSS file for styling
 const Dashboard = () => {
   const [certificates, setCertificates] = useState([]);
   const [loading, setLoading] = useState(false); // New loading state
-
+  const URL = `https://certificate-generation-system-backend.onrender.com`;
+  // http://localhost:8000
   useEffect(() => {
     const fetchCertificates = async () => {
       setLoading(true); // Start loading
       try {
-        const response = await axios.get("https://certificate-generation-system-backend.onrender.com/dashboard");
+        const response = await axios.get(`${URL}/dashboard`);
         setCertificates(response.data);
       } catch (error) {
         toast.error("Failed to fetch certificates.");
@@ -26,7 +27,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     setLoading(true); // Start loading for delete
     try {
-      await axios.delete(`https://certificate-generation-system-backend.onrender.com/api/certificates/${id}`);
+      await axios.delete(`${URL}/api/certificates/${id}`);
       toast.success("Certificate deleted successfully.");
       setCertificates((prev) => prev.filter((cert) => cert._id !== id));
     } catch (error) {
@@ -59,7 +60,7 @@ const Dashboard = () => {
 
     setLoading(true); // Start loading for update
     try {
-      await axios.post(`https://certificate-generation-system-backend.onrender.com/api/certificates/generate/${certId}`, data);
+      await axios.post(`${URL}/api/certificates/generate/${certId}`, data);
       toast.success("Certificate generated successfully!");
     } catch (error) {
       toast.error("Failed to generate certificate. Please try again.");

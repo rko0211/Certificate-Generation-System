@@ -6,12 +6,13 @@ import "./ViewCertificate.css";
 const ViewCertificate = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state
-
+  const URL = `https://certificate-generation-system-backend.onrender.com`;
+  // https://certificate-generation-system-backend.onrender.com
   useEffect(() => {
     const fetchCertificatesData = async () => {
-      setLoading(true); // Set loading to true when fetching starts
+      setLoading(true);
       try {
-        const response = await axios.get("https://certificate-generation-system-backend.onrender.com/viewcertificate");
+        const response = await axios.get(`${URL}/viewcertificate`);
         setData(response.data);
       } catch (error) {
         toast.error("Failed to fetch certificates.");
@@ -24,7 +25,7 @@ const ViewCertificate = () => {
 
   const deleteCertificate = async (id) => {
     try {
-      await axios.delete(`https://certificate-generation-system-backend.onrender.com/delete/viewcertificate/${id}`);
+      await axios.delete(`${URL}/delete/viewcertificate/${id}`);
       toast.success("Certificate deleted successfully.");
       setData((prev) => prev.filter((cert) => cert._id !== id));
     } catch {
