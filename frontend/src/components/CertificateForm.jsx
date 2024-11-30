@@ -20,7 +20,7 @@ const CertificateForm = () => {
 
     try {
       setLoading(true); // Start spinner
-      await axios.post("http://localhost:5001/", formData);
+      await axios.post("https://certificate-generation-system-ruby.vercel.app/", formData);
       toast.success("Request submitted successfully!");
       setName("");
       setCourse("");

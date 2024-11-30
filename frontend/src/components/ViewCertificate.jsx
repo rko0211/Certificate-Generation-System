@@ -9,7 +9,7 @@ const ViewCertificate = () => {
   useEffect(() => {
     const fetchCertificatesData = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/viewcertificate");
+        const response = await axios.get("https://certificate-generation-system-ruby.vercel.app/viewcertificate");
         setData(response.data);
       } catch (error) {
         toast.error("Failed to fetch certificates.");
@@ -20,7 +20,7 @@ const ViewCertificate = () => {
 
   const deleteCertificate = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/delete/viewcertificate/${id}`);
+      await axios.delete(`https://certificate-generation-system-ruby.vercel.app/${id}`);
       toast.success("Certificate deleted successfully.");
       setData((prev) => prev.filter((cert) => cert._id !== id));
     } catch {

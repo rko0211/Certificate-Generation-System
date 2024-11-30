@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
-  res.send("Hello World");
+  res.json({ message: "Hello World" });
 })
 app.get("/dashboard", async (req, res) => {
   try {
