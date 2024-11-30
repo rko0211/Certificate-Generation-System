@@ -1,0 +1,230 @@
+/* Container for the dashboard */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #f0f4f8, #d9e3f0);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Title of the dashboard */
+.dashboard-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+/* Container for the certificate cards */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* Individual certificate card style */
+.certificate-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  padding: 25px;
+  text-align: left;
+}
+
+.certificate-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+}
+
+/* Card header with certificate title and course */
+.card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  font-size: 1.8rem;
+  color: #4A90E2;
+  margin-bottom: 10px;
+}
+
+.card-header p {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* Card body with certificate details */
+.card-body {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.card-body p {
+  margin: 10px 0;
+}
+
+.card-body label {
+  font-weight: bold;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.card-body .data {
+  color: #777;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+/* Issue Date input field styling */
+.issue-date-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.issue-date-input:focus {
+  outline: none;
+  border-color: #4A90E2;
+}
+
+/* Footer section for action buttons */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Button Styling */
+button,
+.delete-btn,
+.view-link {
+  padding: 12px 18px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+button.generate-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+button.generate-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.view-link {
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.view-link:hover {
+  background-color: #0056b3;
+}
+
+/* Button hover effects */
+button,
+.delete-btn,
+.view-link {
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.no-certificates-message {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Light overlay effect */
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+}
+
+.loading-spinner::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+ 
+  border-top: 5px solid #3498db;
+
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px;
+  }
+
+  .certificate-card {
+    padding: 15px;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
