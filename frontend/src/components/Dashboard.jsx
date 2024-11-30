@@ -12,7 +12,7 @@ const Dashboard = () => {
     const fetchCertificates = async () => {
       setLoading(true); // Start loading
       try {
-        const response = await axios.get("https://certificate-generation-system-ruby.vercel.app/dashboard");
+        const response = await axios.get("https://certificate-generation-system-backend.onrender.com/dashboard");
         setCertificates(response.data);
       } catch (error) {
         toast.error("Failed to fetch certificates.");
@@ -26,7 +26,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     setLoading(true); // Start loading for delete
     try {
-      await axios.delete(`https://certificate-generation-system-ruby.vercel.app/${id}`);
+      await axios.delete(`https://certificate-generation-system-backend.onrender.com/${id}`);
       toast.success("Certificate deleted successfully.");
       setCertificates((prev) => prev.filter((cert) => cert._id !== id));
     } catch (error) {
@@ -59,7 +59,7 @@ const Dashboard = () => {
 
     setLoading(true); // Start loading for update
     try {
-      await axios.post(`https://certificate-generation-system-ruby.vercel.app/api/certificates/generate/${certId}`, data);
+      await axios.post(`https://certificate-generation-system-backend.onrender.com/api/certificates/generate/${certId}`, data);
       toast.success("Certificate generated successfully!");
     } catch (error) {
       toast.error("Failed to generate certificate. Please try again.");
