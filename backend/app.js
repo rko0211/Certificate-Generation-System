@@ -12,11 +12,6 @@ const { upLoadFile, generateUrl, deleteFile } = require('./drivecode/apiConnecti
 
 // Middleware
 app.use(cors());
-app.use(cors({
-  origin: "https://certibyte.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -211,25 +206,8 @@ app.delete("/delete/viewcertificate/:id", async (req, res) => {
 });
 
 
-// Serve React build files
-const frontendBuildPath = path.join(__dirname, "../frontend/build");
-app.use(express.static(frontendBuildPath));
+// const PORT = process.env.PORT || 3002;
 
-// Catch-all route to serve React's index.html for other routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendBuildPath, "index.html"));
-});
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send({ error: "An unexpected error occurred." });
-});
-
-
-
-const PORT = process.env.PORT || 3002;
-
-
+const PORT = 3003;
 
 app.listen(PORT);

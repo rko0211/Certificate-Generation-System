@@ -4,7 +4,7 @@ const URI = process.env.URI;
 
 
 
-// Model Creation
+// Database Connection
 const connectDb = async () => {
   try {
     await mongoose.connect(URI);

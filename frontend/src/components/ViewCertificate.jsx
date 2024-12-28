@@ -6,8 +6,8 @@ import "./ViewCertificate.css";
 const ViewCertificate = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state
-  const URL = `https://certificate-generation-system-backend.onrender.com`;
-  // https://certificate-generation-system-backend.onrender.com
+  // const URL = `https://certificate-generation-system-backend.onrender.com`;
+  const URL = `http://localhost:3003`;
   useEffect(() => {
     const fetchCertificatesData = async () => {
       setLoading(true);
