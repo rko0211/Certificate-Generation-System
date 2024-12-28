@@ -7,8 +7,8 @@ import "./Dashboard.css"; // Link to the CSS file for styling
 const Dashboard = () => {
   const [certificates, setCertificates] = useState([]);
   const [loading, setLoading] = useState(false); // New loading state
-  // const URL = `https://certificate-generation-system-backend.onrender.com`;
-  const URL = `http://localhost:3003`;
+  const URL = `https://certificate-generation-system-backend.onrender.com`;
+  // const URL = `http://localhost:8001`;
   useEffect(() => {
     const fetchCertificates = async () => {
       setLoading(true); // Start loading

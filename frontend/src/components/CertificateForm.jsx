@@ -8,8 +8,8 @@ const CertificateForm = () => {
   const [course, setCourse] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  // const URL = `https://certificate-generation-system-backend.onrender.com`;
-  const URL = `http://localhost:3003`;
+  const URL = `https://certificate-generation-system-backend.onrender.com`;
+  // const URL = `http://localhost:8001`;
   const handleSubmit = async (e) => {
     e.preventDefault();
 

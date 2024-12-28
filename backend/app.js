@@ -206,8 +206,8 @@ app.delete("/delete/viewcertificate/:id", async (req, res) => {
 });
 
 
-// const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT;
 
-const PORT = 3003;
+// const PORT = 8003;
 
 app.listen(PORT);
